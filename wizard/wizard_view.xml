@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <!-- ====================================================== -->
+        <!--                        WIZARD                          -->
+        <!-- ====================================================== -->
+        <record id="wizard_multi_stock_cancel" model="ir.ui.view">
+            <field name="name">wizard.multi.stock.cancel</field>
+            <field name="model">wizard.multistockcancel</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Annulla Movimenti" version="7.0">
+                    <separator string="Verranno Annullati i movimenti di magazzino selezionati"/>
+                    <footer>
+                        <button string="Procedi" name="start_cancel" type="object" class="oe_highlight" colspan="2"/>
+                        o
+                        <button string="Annulla" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        wiz7
+
+        <!-- ====================================================== -->
+        <!--                    WIZARD ACTION                       -->
+        <!-- ====================================================== -->
+        <record id="action_multi_stock_cancel" model="ir.actions.act_window">
+            <field name="name">Multi Cancel Move</field>
+            <field name="res_model">wizard.multistockcancel</field>
+            <field name="src_model">stock.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_multi_stock_cancel"/>
+        </record>
+
+        <!-- ====================================================== -->
+        <!--                    WIZARD ACTION/PRINT                 -->
+        <!-- ====================================================== -->
+        <act_window id="act_multi_stock_cancel"
+            key2="client_action_multi"
+            name="Multi Cancel Move"
+            res_model="wizard.multistockcancel"
+            src_model="stock.move"
+            view_id="wizard_multi_stock_cancel"
+            view_mode="form" target="new" view_type="form" />
+
+    </data>
+</openerp>
